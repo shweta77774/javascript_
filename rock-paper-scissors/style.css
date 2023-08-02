@@ -1,0 +1,25 @@
+#gameDiv{border: 3px solid;
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    text-align: center;
+background-color: lightgray;
+    font-family: 'Brush Script',cursive;
+
+}
+.choicebtn{
+    line-height: 30px;
+    width: 150px;
+    font-family: 'Brush Script',cursive;
+    border: 3px solid;
+    margin-inline: 5px;
+    border-radius: 12px;
+}
+#playerText{
+    color:orangered;
+
+}
+#computerText{
+    color:brown;
+}
