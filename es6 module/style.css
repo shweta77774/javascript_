@@ -1,0 +1,32 @@
+#myDiv{
+    background-color: aqua;
+    width:100px;
+    height: 100px;
+    border:1px solid;
+    position: relative;
+}
+#myimg{
+    width: 300px;
+    /* visibility: hidden; */
+    display:none; 
+}
+/*}
+#inner{  
+    background-color: lightgreen;
+    width:100px;
+    height: 100px;
+    border: 1px solid;
+    align-items: center;
+}
+#outer{  
+    background-color: lightgreen;
+    width:300px;
+    height: 300px;
+    border: 1px solid;
+}
+
+#myimg{
+    width: 300px;
+    visibility: hidden;
+    /* display:none; */
+ 

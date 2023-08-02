@@ -1,0 +1,279 @@
+//How to import modules in javascript
+import { PI, getCircumference, getArea } from "./math_util.js";
+console.log(PI);
+let c = getCircumference(10);
+console.log(c);
+let a = getArea(10);
+console.log(a);
+
+import * as M from "./math_util.js";
+console.log(M.PI);
+let c = M.getCircumference(10);
+console.log(c);
+let a = M.getArea(10);
+console.log(a);
+=================================================================================================================
+###################################################################################################################
+//DOM
+
+console.log(document);
+console.dir(document);
+console.log(document.URL);
+//document.location = "https://www.google.com";
+
+document.body.style.backgroundColor = "skyblue";
+document.getElementById("myDiv").innerHTML = "Hello";
+//document.getElementsByName("name");
+let tag = document.getElementsByTagName("li");
+tag[1].style.backgroundColor = "white";
+class_ = document.getElementsByClassName("myClass");
+class_.style.backgroundColor = "white";
+
+//let element = document.querySelector("id/class_name/tag/attribute");
+element.style.backgroundColor = "lightgreen";
+---------------------------------------------------------------------------------------------
+//DOM traversal
+//.firstElementChild
+//.lastElementChild
+//.parentElement
+//.nextElementSibling
+//.previousElementSibling
+//.children[]
+//.Array.from(.children)
+-----------------------------------------------------------------------------------------
+//Add/change html element
+//.innerHTML is vulnerable to xss attacks
+//.textContent is more secure
+
+const nameTag = document.createElement("h1");
+nameTag.innerHTML = "Hiii";
+//rather more secure
+nameTag.textContent = "Hiii";
+
+document.body.append(nameTag);
+
+const mylist = document.querySelector("li");
+const listItem = document.createElement("li");
+listItem.textContent = "mango";
+//mylist.append(listItem);
+//mylist.prepend(listItem);
+mylist.insertBefore(listItem, mylist.getElementsByTagName("li")[1]);
+----------------------------------------------------------------------------------------------------
+//adding element css properties
+const title = document.getElementById("mytitle");
+title.style.backgroundColor = "#222222";
+title.style.color = "rgb(50,250,250)";
+title.style.fontFamily = "consolas";
+title.style.textAlign = "center";
+title.style.border = "2px solid";
+title.style.display = "block";
+------------------------------------------------------------------------------------------------------
+##################################################################################################################3
+=================================================================================================================
+//events:------------------------
+
+//const element = document.body;
+//const element = document.getElementById("myButton")
+//const element = document.getElementById("myText");
+const element = document.getElementById("myDiv");
+element.onclick = doSomething;
+element.onLoad = doSomething;
+element.onchange = doSomething;
+element.onmouseover = doSomething_new;
+element.onmouseout = doSomething_new2;
+element.onmousedown = doSomething_new;
+function doSomething() {
+    alert("You did something");
+}
+function doSomething_new() {
+    element.style.backgroundColor = 'red';
+}
+function doSomething_new2() {
+    element.style.backgroundColor = 'aqua';
+}
+=================================================================================================================
+//addEventListener
+//.addEventListener(event,function,useCapture)
+
+const inner = document.getElementById("inner").addEventListener("click", chnageBlue);
+const outer = document.getElementById("outer").addEventListener("click", chnageBlue);
+
+function chnageBlue() {
+    alert(`${this.id}`);
+    this.style.backgroundColor = "lightblue";
+}
+--------------------------------------------------------------------------------------------------------
+const myBtn = document.getElementById("mybtn");
+
+const myImg = document.getElementById("myimg");
+//console.log(myImg);
+
+myBtn.addEventListener("onclick", clickornot);
+//myBtn.onclick = clickornot;
+
+function clickornot() {
+    let ans = myImg.style.display;
+    console.log(ans);
+    if (ans == "none") {
+        myImg.style.display = "block";
+    } else {
+        myImg.style.display == "none";
+    }
+}
+---------------------------------------------------------------------------------------------------------
+const myBtn = document.getElementById("mybtn");
+
+const myImg = document.getElementById("myimg");
+//console.log(myImg);
+
+myBtn.addEventListener("onclick", clickornot);
+//myBtn.onclick = clickornot;
+
+function clickornot() {
+    let ans = myImg.style.visibility;
+    console.log(ans);
+    if (ans == "hidden") {
+        myImg.style.display = "visible";
+    } else {
+        myImg.style.display == "hidden";
+    }
+}
+============================================================================================================================
+######################################################################################################################################
+const myDiv = document.getElementById("myDiv");
+window.addEventListener("keydown", move);
+let x = 0;
+let y = 0;
+function move(event) {
+    switch (event.key) {
+        case "ArrowDown": y += 5;
+            myDiv.style.top = y + "px";
+            break;
+        case "ArrowUp":
+            y -= 5;
+            myDiv.style.top = y + "px";
+            break;
+        case "ArrowRight":
+            x -= 5;
+            myDiv.style.left = x + "px";
+            break;
+        case "ArrowLeft":
+            x -= 5;
+            myDiv.style.left = x + "px";
+            break;
+        default: 
+    }
+}
+======================================================================================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//animation
+const myBtn = document.getElementById("mybtn");
+const myAnimation = document.getElementById("myDiv");
+
+myBtn.addEventListener("click", begin);
+function begin() {
+    let timerId = null;
+    let x = 0;
+    let y = 0;
+    timerId = setInterval(frame, 5);
+    function frame() {
+        if (x >= 200||y>=200) {
+            clearInterval(timerId);
+        }
+        else {
+            y += 1;
+            myAnimation.style.top = y + "px";
+            x+= 1;
+            myAnimation.style.left = x + "px";
+
+        }
+    }
+}
+==========================================================================================================================
+const myBtn = document.getElementById("mybtn");
+const myAnimation = document.getElementById("myDiv");
+
+myBtn.addEventListener("click", begin);
+function begin() {
+    let timerId = null;
+    let degrees = 0;
+    let x = 0;
+    let y = 0;
+    timerId = setInterval(frame, 5);
+    function frame() {
+        if (x>=200||y>=200) {
+            clearInterval(timerId);
+        }
+        else {
+            degrees += 3;
+     
+           y += 1;
+            myAnimation.style.top = y + "px";
+            x+= 1;
+            myAnimation.style.left = x + "px";
+            myAnimation.style.transform = "rotateX(" + degrees + "deg)";
+            myAnimation.style.transform = "rotateY(" + degrees + "deg)";
+            myAnimation.style.transform = "rotateZ("+degrees+"deg)";
+           
+        }
+    }
+}
+
+=======================================================================================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//Cookies 
+//cookie -small text file used to remeber info about user saved in nam evalue pair
+//document.cookie = "firstName=Sbob; expires=Sun,30 July 2023 12:23:00 UTC; path=/";
+// console.log(document.cookie)
+// //deleteCookie("firstName");
+// setCookie("email", "abc.gmai.com", 365);
+// setCookie("email", "acd.gmai.com", 365);
+// getCookie("email");
+// console.log(document.cookie);
+const firstText = document.querySelector("#firstText");
+const lastText = document.querySelector("#lastText");
+const submitbtn = document.querySelector("#btn");
+const cookiebtn = document.querySelector("#cookiebtn");
+
+submitbtn.addEventListener("click", () => {
+    //alert(firstText.value);
+    setCookie("firstName", firstText.value, 365)
+    setCookie("lasstName", lastText.value, 365)
+    alert("cookie set")
+    //alert(getCookie("firstName"));
+});
+
+cookiebtn.addEventListener("click", () => {
+    alert(`showing cookie`);
+    getCookie("firstName");
+    //     getCookie("lastName");
+
+    // });
+});
+function setCookie(name, value, dayToLive) {
+        const date = new Date();
+        date.setTime(date.getTime() + dayToLive * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = `${name}=${value}; ${expires}; path=/`;
+
+    }
+function deleteCookie(name) {
+        setCookie(name, null, null);
+    }
+function getCookie(name) {
+        const cDecoded = decodeURIComponent(document.cookie);
+        let result;
+        const cArray = cDecoded.split("; ")
+        cArray.forEach(element => {
+            if (element.indexOf(name) == 0) {
+                result = element.substring(name.lenght + 1);
+                console.log(result);
+            }
+            else {
+                return `No cooki efound`;
+            }
+        });
+}    
+=======================================================================================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
