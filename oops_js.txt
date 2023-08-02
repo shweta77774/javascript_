@@ -1,0 +1,239 @@
+//objects: group of properties and method
+
+const car = {
+    model: "Mustang",
+    color: "Red",
+    year: 2023,
+    
+    drive: function () {
+        console.log("You drive a car"+this.model);
+    },
+    brake: function () {
+        console.log("You step on the brakes");
+    }
+
+}
+console.log(car.drive());
+
+//this reference
+
+//class blueprint for creating object
+
+class Player{
+    score = 0;
+    
+    pause() {
+        console.log("You paused")
+    }
+    exit() {
+        console.log("You exitted")
+    }
+}
+
+const palyer1 = new Player();
+palyer1.score += 1;
+console.log(palyer1.score);
+
+
+class Student{
+    constructor(name, age, gpa) {
+        this.name = name;
+        this.age = age;
+        this.gpa = gpa;
+    }
+    study() {
+        console.log(`${this.name} is studying`);
+    }
+}
+
+const s1 = new Student("bro", 12, 9.1);
+console.log(s1.age);
+s1.study();
+
+//static----------------Belongs to the class not to the objects
+//useful for properties,fixed configuration
+//utility functions: Math.round()
+//We don't useit like------const math = new Math();
+
+
+class Car{
+    static no_car = 0;
+    constructor(model) {
+        this.model = model;
+        Car.no_car += 1;
+    }
+    static startRace() {
+        console.log("3....2...1..GO!!!");
+    }
+}
+
+const car1 = new Car("M");
+const car2 = new Car("s");
+const car3 = new Car("Q");
+console.log(Car.no_car);
+console.log(car1.no_car);//object car1 could not access no_car
+//car1.startRace();
+Car.startRace();
+
+
+//inheritance:
+//#super-commonly used to invoke constructor of parent class
+class Animal{
+    alive = true;
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    eat() {
+        console.log(`${this.name} is eating`);
+    }
+    sleep() {
+        console.log();
+    }
+}
+class Rabbit extends Animal{
+    
+    constructor(name, age, rspeed) {
+        super(name,age);
+        this.rspeed = rspeed;
+    }
+    run() {
+        console.log(`${this.name} is running`);
+    }
+}
+class fish extends Animal{
+    
+    constructor(name, age, sspeed) {
+        super(name,age);
+        this.sspeed = sspeed;
+    }
+    swim() {
+        console.log(`${this.name} is swimming`);
+    }
+}
+class hawk extends Animal{
+    
+    constructor(name, age, fspeed) {
+        super(name,age);
+        this.fspeed = fspeed;
+    }
+    fly() {
+        console.log(`${this.name} is flying at ${this.fspeed}`);
+    }
+}
+const rabbit = new Rabbit("rabbit",2,40);
+const f = new fish("fishy",3,70);
+const h = new hawk('hawk',6,86);
+console.log(rabbit.rspeed);
+f.eat();
+h.fly();
+console.log(h.fspeed)
+
+
+//get--- binds an object property to a function when that property is accessed
+//set--- binds an object property to function when that property is assigned value
+class Car{
+    constructor(power,gas) {
+        this._power = power;
+        this._gas = gas;
+    }
+    get power() {
+        return `${this._power} hp`;
+    }
+    get gas() {
+        return `${this._gas}L (${this._gas / 50 * 100}%)`;
+    }
+    set gas(value) {
+        this._gas = value;
+    }
+}
+let car = new Car(400, 40);
+
+car.gas = 23;
+console.log(car.power);
+console.log(car.gas);
+
+//array of objects
+
+class Car{
+    constructor(model, year, color) {
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+    drive() {
+        console.log(`You drive the ${this.model}`);
+    }
+}
+const car1 = new Car("M",2023,'red');
+const car2 = new Car("s",2024,"blue");
+const car3 = new Car("Q", 2022, "yellow");
+const car4 = new Car("t", 2025, "black");
+
+const cars = [car1, car2, car3,car4];
+startRace(cars);
+// console.log(cars[0].model);
+// console.log(cars[1].model);
+// console.log(cars[2].model);
+
+// cars[0].drive();
+function startRace(cars) {
+    for (const car of cars) {
+        car.drive();
+    }
+}
+
+=====================================================================================================
+//anonymous objects
+class Card{
+    constructor(value, suit) {
+        this.value = value;
+        this.suit = suit;
+    }
+}
+// let c1 = new Card("A", "Hearts");
+// let c2 = new Card("A", "Spades");
+// let c3 = new Card("A", "Diamonds");
+// let c4 = new Card("A", "Clubs");
+// let c5 = new Card("2", "Hearts");
+// let c6 = new Card("2", "Spades");
+// let c7 = new Card("2", "Diamonds");
+// let c8 = new Card("2", "Clubs");
+
+// let carrds = [c1, c2, c3, c4, c5, c6, c7, c8];
+// console.log(c1.value + c1.suit);
+
+//Rather doing this^
+    
+let cards = [new Card("A", "Hearts"),
+    new Card("A", "Spades"),
+    new Card("A", "Diamonds"),
+    new Card("A", "Clubs"),
+    new Card("2", "Hearts"),
+    new Card("2", "Spades"),
+    new Card("2", "Diamonds"),
+    new Card("2", "Clubs")
+]
+console.log(cards[0].value + cards[0].suit);
+
+cards.forEach(cards=> console.log(`${cards.value} ${cards.suit} `))
+
+============================================================================================
+ //ERROR HANDLING
+//error handling
+try {
+    let x = window.prompt("Enter a number");
+    x = Number(x);
+    if (isNaN(x)) throw `${x} is a not a number`;
+    if (x == "") throw `Nothing entered`;
+    console.log(`${x} is a a number`);
+    
+} catch (error) {
+    console.log(error);
+}
+finally {
+    console.log("This always executes");
+}
+
+
+
