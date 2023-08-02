@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature converter</title>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+    <Label>Enter temperature</label><br>
+    <input id="temp"><br>
+    <div id ="ans">
+    <p>Convert to<p>
+    <input type="radio" id="c" name="temp_con">Celcius</input> <br>
+    <input type="radio" id="f" name="temp_con">Farenheit</input><br>
+    <br>
+    <input type="submit" id="sub_btn"><br>
+    </div>
+
+</body>
+<script>
+document.getElementById("sub_btn").onclick= function(){
+    let temp;
+    if(document.getElementById("c").checked){
+        temp= document.getElementById("temp").value;
+        temp=Number(temp);
+        temp=to_Celcius(temp);
+        document.getElementById("ans").innerHTML= `<h1>The answer is<br>`+temp+ "celcius";
+
+
+    }
+    else if(document.getElementById("f").checked){
+        temp= document.getElementById("temp").value;
+        temp=Number(temp);
+        temp=to_farenheit(temp);
+        document.getElementById("ans").innerHTML=`<h1>The answer is<br>`+ temp+ "farenheit";        
+    }
+    else{
+        document.getElementById("ans").innerHTML=`<h1>Please select unit`;
+    }
+    function to_Celcius(temp){
+        return (temp-32)*(5/9);
+    }
+    function to_farenheit(temp){
+        return temp*9/5+32;
+    }
+} 
+</script>
+</html>

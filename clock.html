@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Center><p id="a"></Center>
+</body>
+<script>
+    const a = document.getElementById("a");
+
+setInterval(update,1000);
+
+function update() {
+    let date = new Date();
+    a.innerHTML = formatTime(date);
+
+    function formatTime(date) {
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+        let amORpm = hour >= 12 ? "pm" : "am";
+
+        hour = (hour % 12) || 12;
+        hour = formatZeros(hour);
+        minute = formatZeros(minute);
+        second = formatZeros(second);
+        return `${hour}:${minute}:${second} ${amORpm}`
+
+    }
+
+    function formatZeros(time) {
+        time = time.toString();
+        return time.length < 2 ? "0" + time : time;
+    }
+}
+</script>
+</html>

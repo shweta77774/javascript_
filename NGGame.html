@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Number Guessing Game</h1>
+    <p>Pick a number between 1 to 10</p>
+    <label for="number">Enter a guess</label> 
+    <input placeholder="number" id="guess_field">
+    <input type="submit" id ="sub_btn"> 
+</body>
+<script> 
+const answer= (Math.random()*10+1);
+let guesses=0;
+document.getElementById("sub_btn").onclick= function(){
+    let guess=document.getElementById("guess_field").value;
+    guesses+=1;
+    
+    if(guess==answer){
+        alert(`${answer} is the number It took ${guesses} guesses`);
+
+    }
+    else if(guess<answer){
+        alert("Too small");
+    }
+    else{
+        alert("Too big");
+    }
+}
+
+</script>
+</html>
